@@ -30,8 +30,9 @@ void List::push_back(int elem)
 	else {
 		tail = tail->next  = new Node(elem);
 		//tail = tail->next;
+		size++;
 	}
-	size++;
+	
 }
 
 void List::push_front(int elem) {
@@ -39,8 +40,9 @@ void List::push_front(int elem) {
 		add_first(elem);
 	else {
 		head = new Node(elem, head);
+		size++;
 	}
-	size++;
+	
 }
 
 void List::pop_back() {
@@ -56,8 +58,9 @@ void List::pop_back() {
 		delete tail;
 		tail = ñont;
 		tail->next = nullptr;
+		size--;
 	}
-	size--;
+	
 }
 
 void List::pop_front() {
@@ -70,15 +73,18 @@ void List::pop_front() {
 		Node *ñont = head;
 		head = head->next;
 		delete ñont;
+		size--;
 	}
-	size--;
+	
 }
 
 void List::insert(int elem, size_t index) {
 	if (index == 0)
 		push_front(elem);
-	else if (get_size() - 1 <= index)
-		push_back(elem);
+	else if (get_size() < index)
+		throw out_of_range("List out of range");
+	else if (get_size() - 1 < index)
+		push_back(11);
 	else {
 		size_t count = 0;
 		Node* ñont = head;
@@ -87,8 +93,9 @@ void List::insert(int elem, size_t index) {
 			count++;
 		}
 		ñont->next = new Node(elem, (ñont->next));
+		size++;
 	}
-	size++;
+	
 }
 
 
@@ -121,18 +128,13 @@ void List::delete_elem(size_t index) {
 		cont2 = ñont1->next;
 		ñont1->next = ñont1->next->next;
 		delete cont2;
+		size--;
 	}
-	size--;
+	
 }
 
 size_t List::get_size() {
-	size_t count = 0;
-	Node* ñont = head;
-	while (ñont != nullptr) {
-		ñont = ñont->next;
-		count++;
-	}
-	return count;
+	return size;
 }
 
 void List::print_to_console() {
@@ -186,9 +188,7 @@ void List::set(size_t index, int elem) {
 
 bool List::isEmpty()
 {
-	if (head == nullptr)
-		return true;
-	return false;
+	return (head == nullptr);
 }
 
 size_t List::find_first(List *list)
@@ -210,7 +210,7 @@ size_t List::find_first(List *list)
 	}
 	if (cont2 == nullptr)
 		return count;
-	throw out_of_range("No");
+	throw out_of_range("No sublist");
 }
 
 
@@ -218,16 +218,12 @@ size_t List::find_first(List *list)
 
 bool List::equal_h(int value)
 {
-	if (head != nullptr && head->data == value)
-		return true;
-	return false;
+	return (head != nullptr && head->data == value);
 }
 
 bool List::equal_t(int value)
 {
-	if (tail->data == value)
-		return true;
-	return false;
+	return (tail->data == value);
 }
 
 bool List::equal_i(size_t index, int value)
@@ -239,9 +235,7 @@ bool List::equal_i(size_t index, int value)
 		ñont = ñont->next;
 		i++;
 	}
-	if (ñont->data == value && i == index)
-		return true;
-	return false;
+	return (ñont->data == value && i == index);
 }
 
 bool List::equal(List list1, List list2)
@@ -253,10 +247,9 @@ bool List::equal(List list1, List list2)
 			return false;
 		ñont1 = ñont1->next;
 		cont2 = cont2->next;
-	}
-	if (ñont1 || cont2)
-		return false;
-	return true;
+	} 
+	return !(ñont1 || cont2);
+	
 }
 
 

@@ -6,8 +6,6 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace laba2
 {
-	
-
 
 	TEST_CLASS(UnitTest1)
 	{
@@ -151,11 +149,26 @@ namespace laba2
 			
 			for (int index = 0; index <= 10; index++)
 				list->push_back(index);
-			list->insert(11, 21);
+			list->insert(11, 11);
 			Assert::IsTrue(list->equal_t(11));
 
 		}
 
+		TEST_METHOD(insert_out_of_range)
+		{
+
+			for (int index = 0; index <= 10; index++)
+				list->push_back(index);
+			try {
+				list->insert(11, 21);
+			}
+			catch (out_of_range exc) {
+				Assert::AreEqual("List out of range", exc.what());
+
+			}
+
+
+		}
 
 		TEST_METHOD(at_body)
 		{
@@ -196,8 +209,6 @@ namespace laba2
 				Assert::AreEqual("List out of range", exc.what());
 				
 			}
-			
-
 		}
 
 
@@ -418,7 +429,7 @@ namespace laba2
 				list->find_first(sublist);
 			}
 			catch (out_of_range exc) {
-				Assert::AreEqual("No", exc.what());
+				Assert::AreEqual("No sublist", exc.what());
 			}
 		
 		}
@@ -436,7 +447,7 @@ namespace laba2
 				list->find_first(sublist);
 			}
 			catch (out_of_range exc) {
-				Assert::AreEqual("No", exc.what());
+				Assert::AreEqual("No sublist", exc.what());
 			}
 		}
 
