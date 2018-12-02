@@ -46,17 +46,17 @@ void List::push_front(int elem) {
 }
 
 void List::pop_back() {
-	Node *ñont = head;
+	Node *Ã±ont = head;
 	if (!head)
 		throw out_of_range("Error list is Empty");
 	else if (tail == head) {
 		delete_one();
 	}
 	else {
-		while (ñont->next != tail)
-			ñont = ñont->next;
+		while (Ã±ont->next != tail)
+			Ã±ont = Ã±ont->next;
 		delete tail;
-		tail = ñont;
+		tail = Ã±ont;
 		tail->next = nullptr;
 		size--;
 	}
@@ -70,9 +70,9 @@ void List::pop_front() {
 		delete_one();
 	}
 	else {
-		Node *ñont = head;
+		Node *Ã±ont = head;
 		head = head->next;
-		delete ñont;
+		delete Ã±ont;
 		size--;
 	}
 	
@@ -84,15 +84,15 @@ void List::insert(int elem, size_t index) {
 	if (index == 0)
 		push_front(elem);
 	else if (get_size() - 1 < index)
-		push_back(11);
+		push_back(elem);
 	else {
 		size_t count = 0;
-		Node* ñont = head;
+		Node* Ã±ont = head;
 		while (count != index - 1) {
-			ñont = ñont->next;
+			Ã±ont = Ã±ont->next;
 			count++;
 		}
-		ñont->next = new Node(elem, (ñont->next));
+		Ã±ont->next = new Node(elem, (Ã±ont->next));
 		size++;
 	}
 	
@@ -104,12 +104,12 @@ int List::at(size_t index) {
 		throw out_of_range("List out of range");
 	}
 	size_t count = 0;
-	Node* ñont = head;
+	Node* Ã±ont = head;
 	while (index != count) {
-		ñont = ñont->next;
+		Ã±ont = Ã±ont->next;
 		count++;
 	}
-	return ñont->data;
+	return Ã±ont->data;
 }
 
 void List::delete_elem(size_t index) {
@@ -120,13 +120,13 @@ void List::delete_elem(size_t index) {
 		pop_front();
 	else {
 		size_t count = 0;
-		Node* cont2, *ñont1 = head;
+		Node* cont2, *Ã±ont1 = head;
 		while (index - 1 != count) {
-			ñont1 = ñont1->next;
+			Ã±ont1 = Ã±ont1->next;
 			count++;
 		}
-		cont2 = ñont1->next;
-		ñont1->next = ñont1->next->next;
+		cont2 = Ã±ont1->next;
+		Ã±ont1->next = Ã±ont1->next->next;
 		delete cont2;
 		size--;
 	}
@@ -138,25 +138,25 @@ size_t List::get_size() {
 }
 
 void List::print_to_console() {
-	Node* ñont = head;
+	Node* Ã±ont = head;
 	if (isEmpty())
 		cout << "List is empty" << endl;
 	else {
 		cout << "List: ";
-		while (ñont != nullptr) {
-			cout << ñont->data << " ";
-			ñont = ñont->next;
+		while (Ã±ont != nullptr) {
+			cout << Ã±ont->data << " ";
+			Ã±ont = Ã±ont->next;
 		}
 		cout << endl;
 	}
 }
 
 void List::clear() {
-	Node* ñont = head;
-	while (ñont != nullptr) {
-		ñont = ñont->next;
+	Node* Ã±ont = head;
+	while (Ã±ont != nullptr) {
+		Ã±ont = Ã±ont->next;
 		delete head;
-		head = ñont;
+		head = Ã±ont;
 	}
 	size = 0;
 	head = nullptr;
@@ -168,19 +168,19 @@ void List::set(size_t index, int elem) {
 	if (index >= get_size())
 		throw out_of_range("List out of range");
 	else {
-		Node *ñont1 = head, *cont2;
+		Node *Ã±ont1 = head, *cont2;
 
 		if (index == 0) {
 			head->data = elem;
 		}
 		else {
 			size_t count = 0;
-			Node* ñont1 = head;
+			Node* Ã±ont1 = head;
 			while (count != index){
-				ñont1 = ñont1->next;
+				Ã±ont1 = Ã±ont1->next;
 				count++;
 			}
-			ñont1->data = elem;
+			Ã±ont1->data = elem;
 		}
 	}
 }
@@ -194,18 +194,18 @@ bool List::isEmpty()
 size_t List::find_first(List *list)
 {
 	size_t count = 0, iterator = 0;
-	Node*ñont1 = this->head, *cont2 = list->head;
-	while (ñont1 != nullptr && cont2 != nullptr) {
-		if (ñont1->data == cont2->data)
+	Node*Ã±ont1 = this->head, *cont2 = list->head;
+	while (Ã±ont1 != nullptr && cont2 != nullptr) {
+		if (Ã±ont1->data == cont2->data)
 			cont2 = cont2->next;
 		else {
 			cont2 = list->head;
 			count = iterator;
-			if (ñont1->data == cont2->data)
+			if (Ã±ont1->data == cont2->data)
 				cont2 = cont2->next;
 			else count++;
 		}
-		ñont1 = ñont1->next;
+		Ã±ont1 = Ã±ont1->next;
 		iterator++;
 	}
 	if (cont2 == nullptr)
@@ -229,26 +229,26 @@ bool List::equal_t(int value)
 bool List::equal_i(size_t index, int value)
 {
 	int i = 0;
-	Node*ñont = head;
-	while (ñont && i < index)
+	Node*Ã±ont = head;
+	while (Ã±ont && i < index)
 	{
-		ñont = ñont->next;
+		Ã±ont = Ã±ont->next;
 		i++;
 	}
-	return (ñont->data == value && i == index);
+	return (Ã±ont->data == value && i == index);
 }
 
 bool List::equal(List list1, List list2)
 {
-	Node* ñont1 = list1.head;
+	Node* Ã±ont1 = list1.head;
 	Node* cont2 = list2.head;
-	while (ñont1 && cont2) {
-		if (ñont1->data != cont2->data)
+	while (Ã±ont1 && cont2) {
+		if (Ã±ont1->data != cont2->data)
 			return false;
-		ñont1 = ñont1->next;
+		Ã±ont1 = Ã±ont1->next;
 		cont2 = cont2->next;
 	} 
-	return !(ñont1 || cont2);
+	return !(Ã±ont1 || cont2);
 	
 }
 
