@@ -79,10 +79,10 @@ void List::pop_front() {
 }
 
 void List::insert(int elem, size_t index) {
+	if (get_size() < index)
+		throw out_of_range("List out of range");
 	if (index == 0)
 		push_front(elem);
-	else if (get_size() < index)
-		throw out_of_range("List out of range");
 	else if (get_size() - 1 < index)
 		push_back(11);
 	else {

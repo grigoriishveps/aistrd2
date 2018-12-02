@@ -386,10 +386,9 @@ namespace laba2
 
 			for (int index = 0; index <= 10; index++)
 				list->push_back(index);
-			for (int index = 0; index <= 10; index++)
-				sublist->push_back(index);
+		
 
-			Assert::IsTrue(list->find_first(sublist) == 0);
+			Assert::IsTrue(list->find_first(list) == 0);
 		}
 
 		TEST_METHOD(find_first_have_two_lists)
